@@ -1,0 +1,7 @@
+import type { Metadata } from 'next';
+import { Container } from '@/components/Container';
+import { SectionHeading } from '@/components/SectionHeading';
+import { ContactForm } from '@/components/ContactForm';
+import { site } from '@/data/site';
+export const metadata: Metadata = { title: 'Contact', description: 'Get in touch with Ayush Patidar about freelance, contract, or full-time engineering opportunities.' };
+export default function Contact(){return <Container className="py-20"><SectionHeading eyebrow="CONTACT" title="Tell me what you're building." description="Share a little context about the opportunity. I'll review the details and get back to you."/><div className="grid gap-12 lg:grid-cols-[1fr_340px]"><ContactForm/><aside className="space-y-5"><div className="rounded-2xl border border-line bg-panel p-6"><p className="text-sm font-semibold">Prefer email?</p><a href={`mailto:${site.email}`} className="mt-3 block break-all text-lime hover:text-white">{site.email}</a><p className="mt-3 text-xs leading-5 text-muted">For project enquiries, contract discussions, or full-time opportunities.</p></div><div className="rounded-2xl border border-line bg-panel p-6"><p className="text-sm font-semibold">Find me elsewhere</p><a href={site.github} target="_blank" rel="noreferrer" className="mt-4 block text-sm text-muted hover:text-white">GitHub ↗</a><a href={site.linkedin} target="_blank" rel="noreferrer" className="mt-3 block text-sm text-muted hover:text-white">LinkedIn ↗</a></div></aside></div></Container>;}
