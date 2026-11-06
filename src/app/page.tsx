@@ -1,23 +1,41 @@
-import Link from 'next/link';
-import { ArrowUpRight, BrainCircuit, Code2, Cloud, Workflow, Github, Linkedin, Mail, MapPin } from 'lucide-react';
-import { Container } from '@/components/Container';
-import { SectionHeading } from '@/components/SectionHeading';
-import { ProjectCard } from '@/components/ProjectCard';
-import { projects } from '@/data/projects';
-import { site } from '@/data/site';
-import { GitHubShowcase } from '@/components/GitHubShowcase';
-const capabilities = [
-  { icon: BrainCircuit, title: 'AI engineering', text: 'LLM applications, retrieval-augmented generation, embeddings, NLP, and agentic workflows.' },
-  { icon: Code2, title: 'Backend systems', text: 'APIs, data modeling, authentication, transaction workflows, and asynchronous processing.' },
-  { icon: Workflow, title: 'Product engineering', text: 'Turning requirements into useful features, maintainable systems, and reliable user experiences.' },
-  { icon: Cloud, title: 'Cloud & infrastructure', text: 'Deployment, containers, cloud architecture, CI/CD, observability, and operations.' },
-];
-export default function Home() { return <>
-  <section className="relative isolate overflow-hidden border-b border-line"><div className="grid-glow absolute inset-0 -z-10"/><div className="pointer-events-none absolute -right-40 top-10 -z-10 h-[500px] w-[500px] rounded-full bg-lime/[0.07] blur-[120px]"/><Container className="grid min-h-[680px] items-center gap-14 py-24 lg:grid-cols-[1.15fr_.85fr]"><div><p className="eyebrow mb-7">AI ENGINEERING · BACKEND · PRODUCT DEVELOPMENT</p><h1 className="max-w-4xl text-5xl font-semibold leading-[1.04] tracking-[-0.065em] text-white sm:text-6xl lg:text-7xl">I turn complex ideas into <span className="text-lime">intelligent,</span> scalable products.</h1><p className="mt-8 max-w-2xl text-lg leading-8 text-muted">I'm Ayush — an engineer focused on building AI-powered applications, robust backend systems, and production-ready software that solves real-world problems.</p><div className="mt-10 flex flex-wrap gap-3"><Link href="/projects" className="inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3.5 text-sm font-semibold text-ink transition hover:bg-white">Explore my work <ArrowUpRight size={17}/></Link><Link href="/hire" className="rounded-full border border-line px-6 py-3.5 text-sm font-medium text-white transition hover:border-lime">Let's collaborate</Link><a href={site.resumePath} download className="rounded-full border border-line/70 px-6 py-3.5 text-sm font-medium text-muted transition hover:border-lime hover:text-white">Download resume ↓</a></div><div className="mt-12 flex flex-wrap items-center gap-5 text-xs text-muted"><span className="inline-flex items-center gap-2"><MapPin size={14} className="text-lime"/>{site.location}</span><a className="inline-flex items-center gap-2 hover:text-white" href={site.github} target="_blank" rel="noreferrer"><Github size={14}/> GitHub</a><a className="inline-flex items-center gap-2 hover:text-white" href={site.linkedin} target="_blank" rel="noreferrer"><Linkedin size={14}/> LinkedIn</a></div></div>
-  <div className="relative mx-auto w-full max-w-md"><div className="absolute -inset-5 rounded-[2rem] border border-lime/10"/><div className="relative rounded-3xl border border-line bg-panel/90 p-6 shadow-2xl shadow-black/30"><div className="flex items-center justify-between border-b border-line pb-5"><span className="font-mono text-xs text-muted">SYSTEM_OVERVIEW / 001</span><span className="flex items-center gap-2 text-xs text-lime"><span className="h-2 w-2 rounded-full bg-lime"/> BUILDING</span></div><div className="py-8 text-center"><div className="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl border border-lime/30 bg-lime/[0.08]"><BrainCircuit size={42} strokeWidth={1.2} className="text-lime"/></div><p className="mt-5 text-xl font-semibold tracking-tight">Ideas → Systems → Impact</p><p className="mt-2 text-sm text-muted">Engineering across the product lifecycle</p></div><div className="space-y-3">{[{name:'AI / Intelligence',value:'01'},{name:'Backend / APIs',value:'02'},{name:'Data / Architecture',value:'03'},{name:'Cloud / Delivery',value:'04'}].map(x=><div key={x.value} className="flex items-center justify-between rounded-xl border border-line bg-ink px-4 py-3"><span className="text-sm text-white">{x.name}</span><span className="font-mono text-xs text-lime">{x.value}</span></div>)}</div><p className="mt-5 font-mono text-[10px] tracking-wider text-muted">THINK DEEPLY. BUILD RELIABLY. ITERATE.</p></div></div></Container></section>
-  <section className="py-24"><Container><SectionHeading eyebrow="01 / CAPABILITIES" title="I work across the engineering lifecycle." description="From understanding the problem to designing, building, deploying, and improving the solution."/><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{capabilities.map(({icon:Icon,title,text},i)=><div key={title} className="rounded-2xl border border-line bg-panel p-6"><div className="mb-8 flex h-11 w-11 items-center justify-center rounded-xl bg-lime/10 text-lime"><Icon size={21}/></div><p className="mb-2 font-mono text-xs text-muted">0{i+1}</p><h3 className="text-lg font-semibold text-white">{title}</h3><p className="mt-3 text-sm leading-6 text-muted">{text}</p></div>)}</div></Container></section>
-  <section className="border-y border-line bg-[#0E1115] py-24"><Container><div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><SectionHeading eyebrow="02 / SELECTED WORK" title="Things I've helped bring to life." description="A selection of product and engineering work. Open a case study to explore the problem, approach, and technical decisions."/><Link href="/projects" className="mb-10 inline-flex shrink-0 items-center gap-2 text-sm text-lime hover:text-white">All projects <ArrowUpRight size={16}/></Link></div><div className="grid gap-4 md:grid-cols-2">{projects.filter(p=>p.featured).map((project,i)=><ProjectCard key={project.slug} project={project} index={i}/>)}</div></Container></section>
-  <GitHubShowcase/>
-  <section className="py-24"><Container><SectionHeading eyebrow="04 / APPROACH" title="Good engineering is more than writing code." description="I aim to connect business context with sound technical decisions and dependable delivery."/><div className="grid gap-3 md:grid-cols-5">{[{n:'01',t:'Understand',d:'Clarify users, goals, constraints, and the real problem.'},{n:'02',t:'Architect',d:'Shape data, APIs, integrations, and system boundaries.'},{n:'03',t:'Build',d:'Implement reliable, maintainable product capabilities.'},{n:'04',t:'Deploy',d:'Ship with automation, observability, and operational care.'},{n:'05',t:'Improve',d:'Learn from feedback, measure, debug, and optimize.'}].map((x)=><div key={x.n} className="border-l border-line py-2 pl-5"><span className="font-mono text-xs text-lime">{x.n}</span><h3 className="mt-5 font-semibold text-white">{x.t}</h3><p className="mt-2 text-sm leading-6 text-muted">{x.d}</p></div>)}</div></Container></section>
-  <section className="border-y border-line bg-panel/60 py-20"><Container className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center"><div><p className="eyebrow mb-3">HAVE A PROJECT IN MIND?</p><h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">Let's build something meaningful.</h2><p className="mt-4 max-w-xl leading-7 text-muted">Looking for an AI engineer, backend specialist, or product-minded engineering partner? Tell me what you're working on.</p></div><Link href="/hire" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-lime px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white">Start a conversation <ArrowUpRight size={17}/></Link></Container></section>
-  </>; }
+import { AtmosphericIntro } from '@/components/AtmosphericIntro';
+import { EditorialHero } from '@/components/EditorialHero';
+import { TheFactory } from '@/components/TheFactory';
+import { TheLedger } from '@/components/TheLedger';
+import { TheWarRoom } from '@/components/TheWarRoom';
+import { TheNewspaper } from '@/components/TheNewspaper';
+import { ThePrivateRoom } from '@/components/ThePrivateRoom';
+import { ThePub } from '@/components/ThePub';
+import { getAllDispatches } from '@/lib/dispatches';
+
+export default function Home() {
+  const dispatches = getAllDispatches();
+
+  return (
+    <>
+      {/* 1919 Atmospheric Birmingham Street Opening (Brief & Skippable) */}
+      <AtmosphericIntro />
+
+      {/* Chapter 01: THE STREET — Editorial Infographic Hero (Behance-inspired) */}
+      <EditorialHero />
+
+      {/* Chapter 02: THE FACTORY — Technical Expertise & Industrial Blueprints */}
+      <TheFactory />
+
+      {/* Chapter 03: THE LEDGER — Confidential Project Case Files */}
+      <TheLedger />
+
+      {/* Chapter 04: THE WAR ROOM — System Architecture Tactical Board */}
+      <TheWarRoom />
+
+      {/* Chapter 05: THE NEWSPAPER — Field Notes & The 1919 Dispatch (Local Markdown Powered) */}
+      <TheNewspaper dispatches={dispatches} />
+
+      {/* Chapter 06: THE PRIVATE ROOM — Personal Study & Antique Pocket Watch Journey */}
+      <ThePrivateRoom />
+
+      {/* Chapter 07: THE PUB — The Garrison Tavern & Strategic Contact */}
+      <ThePub />
+    </>
+  );
+}

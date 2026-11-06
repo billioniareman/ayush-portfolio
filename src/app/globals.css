@@ -1,13 +1,257 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-:root { color-scheme: dark; }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { background: #0B0D10; color: #F4F5F6; font-family: Arial, Helvetica, sans-serif; }
-::selection { background: #B7F36B; color: #0B0D10; }
-.grid-glow { background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(to bottom, black, transparent 85%); }
-.eyebrow { color: #B7F36B; font: 11px ui-monospace, monospace; letter-spacing: .2em; text-transform: uppercase; }
-.field { width: 100%; border: 1px solid #262B33; border-radius: 12px; background: #0B0D10; padding: 13px 14px; color: #F4F5F6; outline: none; font-size: 14px; }
-.field::placeholder { color: #68717E; }
-.field:focus { border-color: #B7F36B; box-shadow: 0 0 0 3px rgba(183,243,107,.1); }
+
+:root {
+  color-scheme: dark;
+  --font-clarendon: 'Clarendon Condensed', 'Clarendon Extra Condensed', 'Clarendon XX Condensed', 'Roman Wood Type JNL', 'Besley', 'Rockwell Condensed', 'Rockwell Extra Bold', 'Rockwell', 'Rokkitt', 'Ultra', Georgia, serif;
+  --font-cinzel: 'Cinzel', 'Playfair Display', 'Georgia', serif;
+  --font-oswald: 'Oswald', 'Bebas Neue', 'Impact', sans-serif;
+  --font-playfair: 'Playfair Display', 'Georgia', serif;
+  --font-libre: 'Libre Franklin', 'Inter', -apple-system, sans-serif;
+  --font-plex-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  
+  --color-olive: #85866D;
+  --color-charcoal: #252B27;
+  --color-forest: #35443B;
+  --color-sage: #A4A58F;
+  --color-ivory: #E7E4D6;
+  --color-brass: #A99B79;
+  --color-oxblood: #743A36;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #252B27;
+}
+
+body {
+  background-color: #252B27;
+  color: #E7E4D6;
+  font-family: var(--font-libre);
+  overflow-x: hidden;
+  position: relative;
+}
+
+::selection {
+  background: #743A36;
+  color: #E7E4D6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #1A1F1C;
+}
+::-webkit-scrollbar-thumb {
+  background: #35443B;
+  border-radius: 2px;
+  border: 1px solid #A99B79;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A99B79;
+}
+
+/* Atmospheric Film Grain / Paper Texture */
+.vintage-grain {
+  background-image: radial-gradient(rgba(231, 228, 214, 0.04) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Peaky Blinders Clarendon Condensed Wood-Type Title */
+.peaky-title {
+  font-family: var(--font-clarendon);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 0.88;
+  color: #E7E4D6;
+  display: inline-block;
+  transform: scaleY(1.14);
+  transform-origin: center;
+  position: relative;
+}
+
+.peaky-title-grit {
+  display: inline-block;
+  background: linear-gradient(180deg, #F4F2E8 0%, #E7E4D6 60%, #D5D2C2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(1.5px 2px 0px #1A1F1C) drop-shadow(-0.5px -0.5px 0px rgba(169, 155, 121, 0.35));
+}
+
+/* Distressed Wood-Type Header */
+.distressed-title {
+  font-family: var(--font-clarendon);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+  color: #E7E4D6;
+  text-shadow: 1.5px 2px 0px rgba(21, 24, 21, 0.9), -0.5px -0.5px 0px rgba(169, 155, 121, 0.25);
+}
+
+/* Stamped Ledger Effect */
+.vintage-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-oswald);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  border-width: 2px;
+  border-style: solid;
+  padding: 4px 10px;
+  border-radius: 2px;
+  line-height: 1;
+  position: relative;
+  user-select: none;
+}
+
+.stamp-classified {
+  border-color: #743A36;
+  color: #743A36;
+  background-color: rgba(116, 58, 54, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(116, 58, 54, 0.3);
+  transform: rotate(-2deg);
+}
+
+.stamp-approved {
+  border-color: #A99B79;
+  color: #A99B79;
+  background-color: rgba(169, 155, 121, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(169, 155, 121, 0.3);
+  transform: rotate(1.5deg);
+}
+
+.stamp-in-progress {
+  border-color: #A4A58F;
+  color: #A4A58F;
+  background-color: rgba(164, 165, 143, 0.08);
+}
+
+.stamp-record {
+  border-color: #35443B;
+  color: #A4A58F;
+  background-color: rgba(53, 68, 59, 0.4);
+}
+
+/* Vintage Paper Card */
+.ledger-card {
+  background-color: #252B27;
+  border: 1px solid rgba(169, 155, 121, 0.25);
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ledger-card:hover {
+  border-color: rgba(169, 155, 121, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Olive Editorial Canvas Section */
+.bg-editorial-olive {
+  background-color: #85866D;
+  color: #252B27;
+}
+
+.bg-editorial-olive ::selection {
+  background: #252B27;
+  color: #E7E4D6;
+}
+
+/* Vintage Brass Rule Lines */
+.brass-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(169, 155, 121, 0.5) 20%, rgba(169, 155, 121, 0.8) 50%, rgba(169, 155, 121, 0.5) 80%, transparent 100%);
+}
+
+.oxblood-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(116, 58, 54, 0.5) 20%, rgba(116, 58, 54, 0.8) 50%, rgba(116, 58, 54, 0.5) 80%, transparent 100%);
+}
+
+/* Blueprint Grid */
+.blueprint-grid {
+  background-image: 
+    linear-gradient(to right, rgba(169, 155, 121, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(169, 155, 121, 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Newspaper Dropcap */
+.dropcap::first-letter {
+  font-family: var(--font-playfair);
+  float: left;
+  font-size: 3.6rem;
+  line-height: 0.8;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 2px;
+  color: #743A36;
+  font-weight: 700;
+}
+
+/* Form inputs */
+.field {
+  width: 100%;
+  border: 1px solid rgba(169, 155, 121, 0.35);
+  border-radius: 2px;
+  background: #1A1F1C;
+  padding: 13px 14px;
+  color: #E7E4D6;
+  outline: none;
+  font-size: 14px;
+  font-family: var(--font-libre);
+  transition: all 0.2s ease;
+}
+
+.field::placeholder {
+  color: #8D8E78;
+}
+
+.field:focus {
+  border-color: #A99B79;
+  box-shadow: 0 0 0 2px rgba(169, 155, 121, 0.25);
+  background: #202522;
+}
+
+/* Atmospheric Mist & Rain Animations */
+@keyframes atmosphericDrift {
+  0% { transform: translateX(0) translateY(0); opacity: 0.25; }
+  50% { transform: translateX(-30px) translateY(-10px); opacity: 0.45; }
+  100% { transform: translateX(0) translateY(0); opacity: 0.25; }
+}
+
+.mist-layer {
+  animation: atmosphericDrift 16s ease-in-out infinite;
+}
+
+@keyframes lampFlicker {
+  0%, 100% { opacity: 0.95; }
+  12% { opacity: 0.9; }
+  24% { opacity: 1; }
+  36% { opacity: 0.85; }
+  70% { opacity: 0.98; }
+  85% { opacity: 0.92; }
+}
+
+.lamp-glow {
+  animation: lampFlicker 7s infinite ease-in-out;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
